@@ -1,0 +1,30 @@
+.font-mono {
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.bg-blue-gradient {
+  background-image: linear-gradient(to bottom, #f6f6f6 13%, #dcfcff);
+  letter-spacing: 0;
+}
+
+.question {
+  font-size: 1.92rem;
+  margin-bottom: 1.2rem;
+}
+
+form[name="surveyForm"] label {
+  font-size: 20px;
+}
+
+.bottom-lables .form-check-inline {
+  display: inline-block;
+  flex-grow: 1;
+}
+
+.bottom-lables .form-check-inline label {
+  display: block;
+}
+
+.input-ctrl-section {
+  margin-bottom: 3rem;
+}

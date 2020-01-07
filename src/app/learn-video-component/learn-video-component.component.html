@@ -1,0 +1,104 @@
+<!-- {{videoIndex}} -->
+
+<div class="video-player">
+      <div >
+        <div #videoContainer  class="player-box" [ngStyle]="fullsc && {'width': '100%' , 'display' : 'flex'}" id="playerBox">
+          <video (click)="toggleVideo()" #myVideo style="width: 100%" id="myVideo">
+            <source type="video/mp4">
+          </video>
+
+          <div *ngIf="!isPlaying" class="play-next-redo-onscreen">
+              <!-- <button (click)="replay()" class="redo-btn-center"><span>⟲</span></button> -->
+              <button (click)="replay()" class="redo-btn-center"><span><img src="assets/images/redo-icon.png"></span></button>
+              <round-progress [current]="current" [max]="1" [color]="'#45ccce'" [background]="'#eaeaea'" [radius]="34"
+                [stroke]="4" style="position: absolute;top:1px;left:71px; z-index: -1" [semicircle]="false" [rounded]="true"
+                [clockwise]="false" [responsive]="false" [duration]="5000" [animation]="'easeInOutQuart'" [animationDelay]="0"
+                (onRender)="currentValue($event)"></round-progress>
+              <button class="play-btn-center" (click)="toggleVideo()"><span>▷</span></button>
+              <button (click)="goToPractice()" class="next-btn-center"><span class="next-span">▷</span><span>▷</span></button>
+            </div>
+        
+            <div class="bottom-line-controls">
+              <div class="play-btns-bottom">
+                <button (click)="playPrevious()" class="prev-btn"><span class="prev-1">▷</span><span class="prev-2">▷</span></button>
+                <button *ngIf="!isPlaying" class="play-btn" (click)="toggleVideo()"><span>▷</span></button>
+                <button *ngIf="isPlaying" class="play-btn pause-btn" (click)="toggleVideo()"><span>||</span></button>
+                <button (click)="playNext()" class="next-btn"><span class="next-span">▷</span><span>▷</span></button>
+              </div>
+        
+              <div *ngIf="tutorial" class="play-area-line">
+                <div class="learning-side">
+                  <p>Learn</p>
+                  <div class="learn-line">
+                    <div class="stop-play-btns-line">
+                      <div *ngFor="let i of tutorial.videoPaths;let x=index" class="ps-btn">
+                        <span [class.loop-16]="getBarCount(x) == 16" class="eight-count">{{getBarCount(x)}}</span>
+                        <button *ngIf="shouldShowLoopControls(x) && !hasRepeaters(1,x)"
+                          (click)="showLoopControls=!showLoopControls;setActiveLoop(x)"><span class="pasue" *ngIf="tutorial.videoPaths[x].shouldPause">||</span>
+                          <span class="plya" *ngIf="!tutorial.videoPaths[x].shouldPause">▷</span>
+                        </button>
+        
+                        <button *ngIf="shouldShowLoopControls(x) && hasRepeaters(1,x)"
+                          (click)="showLoopControls=!showLoopControls;setActiveLoop(x)"><span class="loop-span">⟲
+        
+                            <span class="loop-span-number">{{getRepeatCount(x)}}</span>
+                          </span>
+        
+                        </button>
+                        <mat-slider *ngIf="videoIndex==x" [disabled]="videoIndex!=x" style="float:left;margin:5px" class="example-margin"
+                          (change)="sliderValue($event,x)" [value]="currentTime" name="percent" [max]="getDuration(x)"
+                          min="0">
+                        </mat-slider>
+                      </div>
+                      <!--
+                        <div *ngIf="tutorial">
+                            <div *ngFor="let i of tutorial.videoPaths;let x=index">
+                              <mat-slider [disabled]="videoIndex!=x" style="float:left;margin:5px" class="example-margin" (change)="sliderValue($event,x)" [value]="getCurrentTime(x)" name="percent" [max]="getDuration(x)" min="0">
+                              </mat-slider>
+                            </div>
+                          </div> -->
+        
+                      <!-- <div style="float: left" class="ps-btn"> </div> -->
+        
+        
+                      <div *ngIf="showLoopControls" (click)="showLoopControls =! showLoopControls" class="overlay"></div>
+                      <div *ngIf="showLoopControls" class="buttons-redo-popup loop-controls">
+                        <span style="cursor: pointer" *ngIf="tutorial.videoPaths[this.activeLoopIndex].shouldPause" (click)="setplayPauseOnStopBool(false)" class="play-popup pl-pop">▷</span>
+                        <span style="cursor: pointer" *ngIf="!tutorial.videoPaths[this.activeLoopIndex].shouldPause" (click)="setplayPauseOnStopBool(true)" class="play-popup">||</span>
+        
+                        <span [class.count]="activeLoopIndicator(1)" (click)="setLearnIndexLoop(1)" style="cursor: pointer"
+                          class="rotate-1">⟲<span>1</span></span>
+                        <span [class.count]="activeLoopIndicator(2)" (click)="setLearnIndexLoop(2)" style="cursor: pointer"
+                          class="rotate-1">⟲<span>2</span></span>
+                        <span [class.count]="activeLoopIndicator(3)" (click)="setLearnIndexLoop(3)" style="cursor: pointer"
+                          class="rotate-1">⟲<span>3</span></span>
+                        <span [class.count]="activeLoopIndicator(4)" (click)="setLearnIndexLoop(4)" style="cursor: pointer"
+                          class="rotate-1">⟲<span>4</span></span>
+                        <span [class.count]="activeLoopIndicator(5)" (click)="setLearnIndexLoop(5)" style="cursor: pointer"
+                          class="rotate-1">⟲<span>5</span></span>
+                      </div>
+                    </div>
+                    <span class="seekbar-learn"></span>
+                  </div>
+                </div>
+        
+        
+              </div>
+              <div class="music-fullscreen">
+                  <span class="music-btn youtube-icon" style="margin-right: 5px;">
+                  <button (click)="openUrl()">♫</button>
+                  </span>
+                <span (click)="showVolumeControl =! showVolumeControl;" class="music-btn">
+                  <mat-slider [value]="volume" style="position:absolute;top: -108px;" min="0" max="10"
+                    (change)="changeVolume($event)" *ngIf="showVolumeControl" vertical></mat-slider>
+                  <button class="volume-btn"><img src="assets/images/speaker.png"></button>
+                </span>
+                <span (click)="fullScreenToggle()" class="full-screen-btn"><button><img src="assets/images/full-screen.svg"></button></span>
+              </div>
+            </div>
+        </div>
+          
+        </div>
+  </div>
+  
+<app-embed-component *ngIf="embedShow"></app-embed-component>

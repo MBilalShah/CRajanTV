@@ -1,0 +1,136 @@
+<div class="container-fluid bg-blue-gradient font-mono" style="min-height: 100vh;">
+  <div class="row justify-content-center pt-5">
+    <div class="col col-md-9">
+      <form name="surveyForm" class="mb-5" (ngSubmit)="submitquestion1()" [formGroup]="surveyform1">
+        <section class="input-ctrl-section">
+          <div class="question">
+            Have you taken a dance class before?
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" [value]="true" formControlName="dancedBefore" type="radio"
+              id="danced-before-yes">
+            <label class="form-check-label" for="danced-before-yes">Yes</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" [value]="false" formControlName="dancedBefore" type="radio"
+              id="danced-before-no">
+            <label class="form-check-label" for="danced-before-no">No</label>
+          </div>
+        </section>
+
+        <!--  -->
+
+        <section class="input-ctrl-section">
+          <div class="question">
+            Have you learned choreography through an online tutorial?
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" [value]="true" formControlName="learnedThroughOnline" type="radio"
+              id="learning-online-yes">
+            <label class="form-check-label" for="learning-online-yes">Yes</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" [value]="false" formControlName="learnedThroughOnline" type="radio"
+              id="learning-online-no">
+            <label class="form-check-label" for="learning-online-no">No</label>
+          </div>
+        </section>
+
+        <!--  -->
+        <section class="input-ctrl-section">
+          <div class="question">
+            When learning choreography, how many 8 counts do you like learning at a
+time?
+          </div>
+
+          <!-- Inputs -->
+          <section class="d-flex bottom-lables">
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" value="2" formControlName="countAtATime" type="radio"
+                id="count-at-a-time-one">
+              <label class="form-check-label" for="count-at-a-time-one">One</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" value="4" formControlName="countAtATime" type="radio"
+                id="count-at-a-time-afew">
+              <label class="form-check-label" for="count-at-a-time-afew">A Few</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" value="6" formControlName="countAtATime" type="radio"
+                id="count-at-a-time-halfpiece">
+              <label class="form-check-label" for="count-at-a-time-halfpiece">Half Piece</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" value="8" formControlName="countAtATime" type="radio"
+                id="count-at-a-time-fullpiece">
+              <label class="form-check-label" for="count-at-a-time-fullpiece">Full Piece</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" value="1" formControlName="countAtATime" type="radio"
+                id="count-at-a-time-idontknow">
+              <label class="form-check-label" for="count-at-a-time-idontknow">I Don't Know</label>
+            </div>
+
+          </section>
+        </section>
+
+        <!--  -->
+
+        <section class="input-ctrl-section">
+          <div class="question">
+            Rate yourself as a dancer.
+          </div>
+         <!-- Inputs ctrls -->
+
+         <section class="d-flex bottom-lables">
+          <div class="form-check form-check-inline">
+            <input id="ratting-1" class="form-check-input" [value]="1" formControlName="rating" type="radio">
+            <!-- <label class="form-check-label">1 - First time dancer</label> -->
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" [value]="2" formControlName="rating" type="radio">
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" [value]="3" formControlName="rating" type="radio">
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" [value]="4" formControlName="rating" type="radio">
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" [value]="5" formControlName="rating" type="radio">
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" [value]="6" formControlName="rating" type="radio">
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" [value]="7" formControlName="rating" type="radio">
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" [value]="8" formControlName="rating" type="radio">
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" [value]="9" formControlName="rating" type="radio">
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" id="ratting-2" [value]="10" formControlName="rating" type="radio">
+            <!-- <label class="form-check-label" for="rate-yourself">10 - Won multiple dance competitions</label> -->
+          </div>
+         </section>
+         <section class="d-flex justify-content-between">
+           <p>
+             <label for="ratting-1">1 - First <br> time dancer</label>
+           </p>
+           <p>
+             <label for="ratting-2">10 - Won <br> multiple dance <br>competitions</label>
+           </p>
+         </section>
+        </section>
+
+        <!-- Submit button -->
+        <div class="d-flex justify-content-end">
+          <button class="btn btn-outline-primary text-uppercase" [disabled]="surveyform1.invalid">Continue</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

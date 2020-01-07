@@ -1,0 +1,31 @@
+// .player-box:hover .bottom-line-controls{
+// opacity: 1;
+// }
+// .bottom-line-controls{
+//     opacity: 0;
+// }
+
+.loop-controls{
+  top: -34px;
+  background: rgba(0,0,0,.54);
+  border-radius: 34px;
+}
+.rotate-1:hover{
+    color:#00e0f7
+}
+.play-popup:hover{
+    color: #00e0f7
+}
+.blue-text{
+    color: #00e0f7 !important;
+}
+.count{
+    color:#f5a623;
+}
+.overlay{
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+}

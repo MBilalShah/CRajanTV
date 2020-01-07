@@ -1,0 +1,64 @@
+<div class="container-fluid bg-blue-gradient font-mono" style="min-height: 100vh;">
+  <div class="row justify-content-center pt-5">
+    <div class="col col-md-9">
+      <form name="surveyForm" class="mb-5" (ngSubmit)="handleSubmit()" [formGroup]="surveyForm2">
+
+        <section class="input-ctrl-section">
+          <div class="question">
+            Did you like to watch more or practice more ?
+          </div>
+          <div class="form-check form-check-inline mr-5">
+            <input class="form-check-input" value="watch" formControlName="likeToWatch" type="radio"
+              id="likeToWatch-yes">
+            <label class="form-check-label" for="likeToWatch-yes">WATCH</label>
+          </div>
+          <div class="form-check form-check-inline mr-5">
+            <input class="form-check-input" value="practice" formControlName="likeToWatch" type="radio"
+              id="likeToWatch-practice">
+            <label class="form-check-label" for="likeToWatch-practice">PRACTICE</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" value="lotsofboth" formControlName="likeToWatch" type="radio"
+              id="likeToWatch-lots-of-both">
+            <label class="form-check-label" for="likeToWatch-lots-of-both">LOTS OF BOTH</label>
+          </div>
+        </section>
+
+        <!--  -->
+
+        <section class="input-ctrl-section">
+          <div class="form-group row">
+            <label for="instructionalVideoWatchCount" class="col-10 col-form-label">
+              <span class="question">
+                How many times would you like to rewatch an instructional video ? (Most people do 3)
+              </span>
+            </label>
+            <div class="col-sm-2">
+              <input type="number" formControlName="instructionalVideoWatchCount"  class="form-control" id="instructionalVideoWatchCount">
+            </div>
+          </div>
+        </section>
+
+        <!--  -->
+
+        <section class="input-ctrl-section">
+            <div class="form-group row">
+              <label for="practiceVideoWatchCount" class="col-10 col-form-label">
+                <span class="question">
+                    How many times would you like to rewatch an practice video ? (Most people do 3)
+                </span>
+              </label>
+              <div class="col-sm-2">
+                <input type="number" formControlName="practiceVideoWatchCount"  class="form-control" id="practiceVideoWatchCount">
+              </div>
+            </div>
+          </section>
+
+        <!-- Submit button -->
+        <div class="d-flex justify-content-end">
+          <button class="btn btn-outline-primary text-uppercase" [disabled]="surveyForm2.invalid">Continue</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

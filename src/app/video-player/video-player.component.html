@@ -1,0 +1,91 @@
+{{activePracticeOrLearn}}
+{{videoIndex}}
+
+<div class="video-player">
+
+  <div #videoContainer class="player-box">
+    <video #myVideo controls (click)="pause()" style="width: 100%" id="myVideo">
+      <source type="video/mp4">
+    </video>
+    <div  class="play-next-redo-onscreen">
+      <button (click)="replay()" class="redo-btn-center"><span>⟲</span></button>
+
+      <button *ngIf="!isPlaying" class="play-btn-center" (click)="toggleVideo()"><span>▷</span></button>
+      <button *ngIf="isPlaying" class="play-btn-center" (click)="toggleVideo()"><span>||</span></button>
+      <button (click)="togglePracticeOrLearn()"  class="next-btn-center"><span
+          class="next-span" [class.blue-text]="activePracticeOrLearn=='practiceVideoPath'">▷</span><span [class.blue-text]="activePracticeOrLearn=='practiceVideoPath'">▷</span></button>
+    </div>
+
+    <div class="bottom-line-controls">
+      <div class="play-btns-bottom">
+        <button (click)="replay()" class="prev-btn"><span class="prev-1">▷</span><span class="prev-2">▷</span></button>
+        <button *ngIf="!isPlaying" class="play-btn" (click)="toggleVideo()"><span>▷</span></button>
+        <button *ngIf="isPlaying" class="play-btn" (click)="toggleVideo()"><span>||</span></button>
+        <button class="next-btn"><span class="next-span">▷</span><span>▷</span></button>
+      </div>
+
+      <div *ngIf="tutorial" class="play-area-line">
+        <div class="learning-side">
+          <p>Learn</p>
+          <div class="learn-line">
+            <div class="stop-play-btns-line">
+              <div *ngFor="let i of tutorial.videoPaths;let x=index" class="ps-btn"> <button
+                  (click)="showLoopControls=!showLoopControls;setActiveLoop(x)"><span>||</span></button></div>
+              <div style="float: left" class="ps-btn"> </div>
+
+
+              <div *ngIf="showLoopControls" class="buttons-redo-popup loop-controls">
+                <span style="cursor: pointer" (click)="playLearnVideo()" class="play-popup">▷</span>
+                <span [class.count]="activeLoopIndicator(1)" (click)="setLearnIndexLoop(1)" style="cursor: pointer"
+                  class="rotate-1">⟲<span>1</span></span>
+                <span [class.count]="activeLoopIndicator(2)" (click)="setLearnIndexLoop(2)" style="cursor: pointer"
+                  class="rotate-1">⟲<span>2</span></span>
+                <span [class.count]="activeLoopIndicator(3)" (click)="setLearnIndexLoop(3)" style="cursor: pointer"
+                  class="rotate-1">⟲<span>3</span></span>
+                <span [class.count]="activeLoopIndicator(4)" (click)="setLearnIndexLoop(4)" style="cursor: pointer"
+                  class="rotate-1">⟲<span>4</span></span>
+                <span [class.count]="activeLoopIndicator(5)" (click)="setLearnIndexLoop(5)" style="cursor: pointer"
+                  class="rotate-1">⟲<span>5</span></span>
+              </div>
+            </div>
+            <span class="seekbar-learn"></span>
+          </div>
+        </div>
+        <div class="practise-side">
+          <p>PRACTICE TEMPO</p>
+          <div class="tempo-rating"><span class="rate-1">▷</span> <span class="rate-2">▷</span> <span
+              class="rate-3">▷</span></div>
+          <div class="practise-line">
+            <div class="stop-play-btns-line practise-st-btns">
+
+              <div *ngFor="let i of tutorial.practiceVideoPath;let x=index"  class="ps-btn"> <button style="cursor: pointer" ><span>||</span></button></div>
+              <!-- <div class="ps-btn"> <button><span>||</span></button></div> -->
+            </div>
+
+            <span class="seekbar-prac"></span>
+          </div>
+          <div *ngIf="showPracticeLoopControls" style="left:55%" class="buttons-redo-popup loop-controls">
+            <span style="cursor: pointer" class="play-popup">▷</span>
+            <span [class.count]="activePracticeLoopIndicator(1)" (click)="setPracticeIndexLoop(1)" style="cursor: pointer"
+              class="rotate-1">⟲<span>1</span></span>
+            <span [class.count]="activePracticeLoopIndicator(2)" (click)="setPracticeIndexLoop(2)" style="cursor: pointer"
+              class="rotate-1">⟲<span>2</span></span>
+            <span [class.count]="activePracticeLoopIndicator(3)" (click)="setPracticeIndexLoop(3)" style="cursor: pointer"
+              class="rotate-1">⟲<span>3</span></span>
+            <span [class.count]="activePracticeLoopIndicator(4)" (click)="setPracticeIndexLoop(4)" style="cursor: pointer"
+              class="rotate-1">⟲<span>4</span></span>
+            <span [class.count]="activePracticeLoopIndicator(5)" (click)="setPracticeIndexLoop(5)" style="cursor: pointer"
+              class="rotate-1">⟲<span>5</span></span>
+          </div>
+        </div>
+      </div>
+      <div class="music-fullscreen">
+        <span class="music-btn"><button>🎜</button></span>
+        <span (click)="fullScreenToggle()" class="full-screen-btn"><button>⛶</button></span>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
